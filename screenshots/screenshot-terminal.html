@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Output</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 1rem;
+    min-height: 100vh;
+  }
+  .terminal {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #11111b;
+    border-radius: 6px;
+    padding: 1rem;
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+  .prompt { color: #a6e3a1; }
+  .cmd { color: #89b4fa; }
+  .output { color: #f9e2af; word-break: break-all; }
+  .bar { height: 1.5rem; border-radius: 6px 6px 0 0; background: #181825; margin-bottom: 0; display: flex; align-items: center; padding: 0 0.75rem; gap: 0.5rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot:nth-child(1) { background: #f38ba8; }
+  .dot:nth-child(2) { background: #f9e2af; }
+  .dot:nth-child(3) { background: #a6e3a1; }
+  .title { color: #6c7086; font-size: 0.75rem; margin-left: 0.5rem; }
+</style>
+</head>
+<body>
+<div class="terminal">
+<div class="bar">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="title">Terminal — mini-program</span>
+</div>
+<pre style="padding: 0.75rem; margin: 0;">
+<span class="prompt">~/mini-program </span><span class="cmd">$ node scripts/foobar.mjs</span>
+
+<span class="output" id="out"></span>
+</pre>
+</div>
+
+<script>
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let i = 2; i * i <= n; i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
+}
+const result = [];
+for (let n = 100; n >= 1; n--) {
+  if (isPrime(n)) continue;
+  if (n % 15 === 0) result.push("FooBar");
+  else if (n % 3 === 0) result.push("Foo");
+  else if (n % 5 === 0) result.push("Bar");
+  else result.push(n.toString());
+}
+document.getElementById("out").textContent = result.join(", ");
+</script>
+</body>
+</html>

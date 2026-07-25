@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Program — Task 1</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    background: #0d0d0d;
+    color: #e0e0e0;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-bottom: 0.25rem;
+  }
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #a0a0a0;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.25rem;
+  }
+  .source {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    white-space: pre;
+    color: #c0c0c0;
+  }
+  .keyword { color: #c586c0; }
+  .func { color: #dcdcaa; }
+  .string { color: #ce9178; }
+  .comment { color: #6a9955; }
+  .number { color: #b5cea8; }
+  .output {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 1rem;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    word-break: break-all;
+    color: #4ec9b0;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Skill Test &mdash; Task 1: Small Program</h1>
+
+<h2>Source Code (app/lib/foobar.ts)</h2>
+<div class="source">
+<span class="keyword">export function</span> <span class="func">isPrime</span>(n: <span class="keyword">number</span>): <span class="keyword">boolean</span> {
+  <span class="keyword">if</span> (n &lt; <span class="number">2</span>) <span class="keyword">return false</span>;
+  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i * i &lt;= n; i++) {
+    <span class="keyword">if</span> (n % i === <span class="number">0</span>) <span class="keyword">return false</span>;
+  }
+  <span class="keyword">return true</span>;
+}
+
+<span class="keyword">export function</span> <span class="func">generateFooBar</span>(): <span class="keyword">string</span>[] {
+  <span class="keyword">const</span> result: <span class="keyword">string</span>[] = [];
+
+  <span class="keyword">for</span> (<span class="keyword">let</span> n = <span class="number">100</span>; n &gt;= <span class="number">1</span>; n--) {
+    <span class="keyword">if</span> (isPrime(n)) <span class="keyword">continue</span>;
+
+    <span class="keyword">if</span> (n % <span class="number">15</span> === <span class="number">0</span>) {
+      result.push(<span class="string">"FooBar"</span>);
+    } <span class="keyword">else if</span> (n % <span class="number">3</span> === <span class="number">0</span>) {
+      result.push(<span class="string">"Foo"</span>);
+    } <span class="keyword">else if</span> (n % <span class="number">5</span> === <span class="number">0</span>) {
+      result.push(<span class="string">"Bar"</span>);
+    } <span class="keyword">else</span> {
+      result.push(n.toString());
+    }
+  }
+
+  <span class="keyword">return</span> result;
+}
+</div>
+
+<h2>Result</h2>
+<div class="output" id="output"></div>
+
+</div>
+
+<script>
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let i = 2; i * i <= n; i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
+}
+
+const result = [];
+for (let n = 100; n >= 1; n--) {
+  if (isPrime(n)) continue;
+  if (n % 15 === 0) result.push("FooBar");
+  else if (n % 3 === 0) result.push("Foo");
+  else if (n % 5 === 0) result.push("Bar");
+  else result.push(n.toString());
+}
+document.getElementById("output").textContent = result.join(", ");
+</script>
+</body>
+</html>
